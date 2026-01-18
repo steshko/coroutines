@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 class MySuspendFunctionWrapper {
     private static class MySuspendStateMachine implements Continuation<String> {
         int label = 0;
-        Continuation<?> parentContinuation;
+        private final Continuation<?> parentContinuation;
         MySuspendStateMachine(Continuation<?> parentContinuation) {
             this.parentContinuation = parentContinuation;
         }
@@ -28,6 +28,18 @@ class MySuspendFunctionWrapper {
     }
 
 
+    /**
+     * Kotlin equivalent:
+     * <pre>
+     * suspend fun mySuspendFun(): String {
+     *     delay(5000)
+     *     return "Hello World"
+     * }
+     * </pre>
+     *
+     * @param continuation the continuation
+     * @return "Hello World" or COROUTINE_SUSPENDED
+     */
     protected static Object mySuspendFun(Continuation<? super String> continuation) {
         MySuspendStateMachine sm;
         if (continuation instanceof MySuspendStateMachine stateMachine) {
@@ -57,6 +69,3 @@ class MySuspendFunctionWrapper {
         }
     }
 }
-
-
-
