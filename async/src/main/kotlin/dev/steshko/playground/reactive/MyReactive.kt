@@ -1,4 +1,4 @@
-package dev.steshko.reactive
+package dev.steshko.playground.reactive
 
 import kotlin.math.min
 

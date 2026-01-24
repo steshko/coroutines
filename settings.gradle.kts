@@ -1,1 +1,5 @@
-rootProject.name = "coroutines"
+rootProject.name = "playground"
+
+include("async")
+include("spring-mvc")
+include("spring-webflux")

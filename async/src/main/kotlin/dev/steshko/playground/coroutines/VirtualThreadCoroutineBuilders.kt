@@ -1,4 +1,4 @@
-package dev.steshko.coroutines
+package dev.steshko.playground.coroutines
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred

@@ -1,22 +1,25 @@
 plugins {
-    kotlin("jvm") version "2.3.0"
+    val kotlinVersion = "2.3.0"
+    kotlin("jvm") version kotlinVersion apply false
+    kotlin("plugin.spring") version kotlinVersion apply false
+    kotlin("plugin.jpa") version kotlinVersion apply false
+    id("org.springframework.boot") version "4.0.2" apply false
+    id("io.spring.dependency-management") version "1.1.7" apply false
 }
 
-group = "dev.steshko.coroutines"
-version = "0.0.1-SNAPSHOT"
+allprojects {
+    group = "dev.steshko.playground"
+    version = "0.0.1-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+    repositories {
+        mavenCentral()
+    }
 
-dependencies {
-    implementation("io.netty:netty-all:4.2.9.Final")
-    runtimeOnly("io.netty:netty-transport-native-io_uring:4.2.9.Final")
-    implementation("io.projectreactor:reactor-core:3.8.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
+    plugins.withType<JavaPlugin> {
+        configure<JavaPluginExtension> {
+            toolchain {
+                languageVersion.set(JavaLanguageVersion.of(25))
+            }
+        }
+    }
 }
