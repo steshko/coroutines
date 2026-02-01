@@ -1,3 +1,8 @@
 spring:
   r2dbc:
-    url: r2dbc:h2:mem:///testdb
+    url: r2dbc:postgresql://localhost:5432/notes
+    username: postgres
+    password:
+  sql:
+    init:
+      mode: always
