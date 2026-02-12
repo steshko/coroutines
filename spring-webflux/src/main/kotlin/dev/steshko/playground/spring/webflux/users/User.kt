@@ -8,5 +8,5 @@ import org.springframework.data.relational.core.mapping.Table
 data class User(
     @Id
     @Column("user_id") val userId: Long? = null,
-    @Column("user_name") val userName: String,
+    @Column("user_name") val userName: String
 )
